@@ -1,11 +1,5 @@
 import torch
-import os
-import sys
-from torch import nn
-from torch import optim
-from PIL import Image
-import numpy as np
-import DataSet
+from tools import DataSet
 
 
 def train(train_set_name):

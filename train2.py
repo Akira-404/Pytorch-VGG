@@ -1,9 +1,7 @@
 import os
 import numpy as np
 from PIL import Image
-import random
 import sys
-from torch.utils.data import Dataset
 import torch
 from model.vgg import VGG
 import torch.nn as nn
