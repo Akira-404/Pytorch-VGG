@@ -2,22 +2,15 @@ import torch.nn as nn
 import torch
 
 
-class VGG(nn.Module):
+class VGG11(nn.Module):
 
     def __init__(self, num_classes):
-        super(VGG, self).__init__()
+        super(VGG11, self).__init__()
         self.num_classes = num_classes
 
         self.Conv1 = nn.Sequential(
             nn.Conv2d(
                 in_channels=3,
-                out_channels=64,
-                kernel_size=3,
-                stride=1,
-                padding=1),
-            nn.ReLU(),
-            nn.Conv2d(
-                in_channels=64,
                 out_channels=64,
                 kernel_size=3,
                 stride=1,
@@ -35,13 +28,6 @@ class VGG(nn.Module):
                 stride=1,
                 padding=1),
             nn.ReLU(),
-            nn.Conv2d(
-                in_channels=128,
-                out_channels=128,
-                kernel_size=3,
-                stride=1,
-                padding=1),
-            nn.ReLU(),
             nn.MaxPool2d(
                 kernel_size=2,
                 stride=2),
@@ -49,13 +35,6 @@ class VGG(nn.Module):
         self.Conv3 = nn.Sequential(
             nn.Conv2d(
                 in_channels=128,
-                out_channels=256,
-                kernel_size=3,
-                stride=1,
-                padding=1),
-            nn.ReLU(),
-            nn.Conv2d(
-                in_channels=256,
                 out_channels=256,
                 kernel_size=3,
                 stride=1,
@@ -87,26 +66,12 @@ class VGG(nn.Module):
                 stride=1,
                 padding=1),
             nn.ReLU(),
-            nn.Conv2d(
-                in_channels=512,
-                out_channels=512,
-                kernel_size=3,
-                stride=1,
-                padding=1),
-            nn.ReLU(),
             nn.MaxPool2d(
                 kernel_size=2,
                 stride=2),
         )
 
         self.Conv5 = nn.Sequential(
-            nn.Conv2d(
-                in_channels=512,
-                out_channels=512,
-                kernel_size=3,
-                stride=1,
-                padding=1),
-            nn.ReLU(),
             nn.Conv2d(
                 in_channels=512,
                 out_channels=512,
@@ -159,9 +124,10 @@ class VGG(nn.Module):
                 nn.init.normal_(m.weight.data, 0, 0.1)
                 m.bias.data.zero_()
 
+
 if __name__ == "__main__":
     x = torch.rand(size=(8, 3, 224, 224))
     # print(x)
-    vgg = VGG(num_classes=2)
+    vgg = VGG11(num_classes=2)
     out = vgg(x)
     print(out.size())

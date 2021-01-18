@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 import sys
 import torch
-from model.vgg import VGG
+from model.model_vgg16 import VGG
 import torch.nn as nn
 import torch.optim as optim
 

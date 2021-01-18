@@ -12,7 +12,7 @@ from torch.utils.data import DataLoader
 from tools import DataSet
 
 from tools.DataSet import AnimalDataSet
-from model.vgg import VGG
+from model.model_vgg16 import VGG16
 
 
 def train(train_set_name, valid_set_name, test_set_name):
@@ -67,7 +67,7 @@ def train(train_set_name, valid_set_name, test_set_name):
 
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
-    net = VGG(num_classes=2).to(device)
+    net = VGG16(num_classes=2).to(device)
 
     net.initialize_weights()
 
