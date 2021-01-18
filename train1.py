@@ -65,13 +65,10 @@ def train(train_set_name, valid_set_name, test_set_name):
         batch_size=batch_size,
     )
 
-    # if torch.cuda.is_available():
-    #     device = torch.device('cuda:0')
-    #     net = VGG(num_classes=2).to(device)
-    # else:
-    #     net = VGG(num_classes=2)
+    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
-    net = VGG(num_classes=2)
+    net = VGG(num_classes=2).to(device)
+
     net.initialize_weights()
 
     criterion = nn.CrossEntropyLoss()
@@ -92,18 +89,18 @@ def train(train_set_name, valid_set_name, test_set_name):
         correct = 0
         total = 0
 
-        # net.train().cuda()
-        net.train()
+        net.train().cuda()
+        # net.train()
 
         for i, data in enumerate(train_loader):
             iter_count += 1
 
             inputs, labels = data
             # print("inputs:{},labels:{}".format(inputs.size(),labels))
-            # if torch.cuda.is_available():
-            #     inputs = inputs.cuda()
-            # else:
-            #     labels.long()
+
+            inputs = inputs.to(device)
+            labels = labels.to(device)
+
             outpus = net(inputs)
 
             optimizer.zero_grad()
