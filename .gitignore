@@ -3,7 +3,7 @@
 /venv
 /model/__pycache__/
 /model/__init__.py
-/tools/__init__.py
-/tiny-train-set/
+/tools/
+/valid-set/
 /train-set/
 /test-set/

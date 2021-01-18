@@ -81,6 +81,7 @@ def train(train_set, train_label, all_data_count):
             if torch.cuda.is_available():
                 x = x.cuda()
                 y = y.long().cuda()
+
             else:
                 y = y.long()
 
@@ -130,7 +131,7 @@ def train(train_set, train_label, all_data_count):
 
 
 if __name__ == "__main__":
-    train_set, train_label, len = get_data_set("tiny-train-set")
+    train_set, train_label, len = get_data_set("valid-set")
     train(train_set, train_label, len)
     # print(data_set)
     # print(train_set[16:32])
